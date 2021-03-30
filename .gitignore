@@ -1,0 +1,9 @@
+# Default ignored files
+./.idea/
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../../../:\Users\user\Google Drive\Lab Stuff\Fun_with_ddms\DDM\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
