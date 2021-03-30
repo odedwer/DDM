@@ -1,1 +1,41 @@
-<mxfile host="app.diagrams.net" modified="2021-03-30T07:27:09.565Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="DiXDPAGK1Ioy8wOjaiW1" version="14.5.3" type="google"><diagram name="Page-1" id="42789a77-a242-8287-6e28-9cd8cfd52e62">7Ztdb9owFIZ/TS435YMk5HKwtrvYJk2dtms3cZOsxkaOKbBfP5sck2QWIUyqMJrbSo3P8Ufwef34xIAXLVe7B47W1RdWYOKFfrHzoo9eGAazMPTUn1/sW0uagKHkdQGVOsNj/RuD0Qfrpi5wM6goGCOiXg+NOaMU52JgQ5yz7bDaMyPDUdeoxIbhMUfEtP6sC1GBNfD9zvEJ12UFQ89jcDyh/KXkbENhPC+Mng8/rXuFdF9Qv6lQwbY9U3TnRUvOmGivVrslJmpu9bS17e5PeI/3zTEVkxpgFAVpmvlFmKNsHr0LIFCN2OvJwIWcGyhSRuW/xeEVYtVHIEuVWBG4JOgJk8VxEpaMMN41awTi4oOKz1+2+5qoHnxdBkXEsoxpoVvkBDVNnX+vato6oFnQlnqNfmEh9lBGG8GkiXFRsZJRRD4ztoZWjeDsBeu7lMFaHH6PHh18VfeZUXGPVjVRmv6BeYEoAjOMpOeuP/0QkYZteI5PzTkoHPESixN1oGsVi17HENQHzFZY8L2swDFBon4d6hjBciiP9TpJyAtQxVSFRG2nr4hsYJh2UEaddGyUTmaPdGZOOjclncge6RjK+bbBjVJOo4Z6YhuhXkyFVdaBBDL1RIjMHlTst1Ut8OMaHWZmKxOYoZg6lR2EoTdo5crZqs7BcU5z/xTIaIFIXVKlOhlLLDtcnAzuK+YC70bDAt6Zzk4gG5tDcdulNhmYql5Sk/hvEMfQDKRDwLUQEE5AQGoNAvRDhZPOjUgnsUc6hnK8MCFCzdkaSfUkpbr+Kp9jZa2jTw7Td7stpb+lpO/jwaYSZOauksbmrhK/xa4SxA4N1qAhmoCGmTVoMJ9mR9AQOTScRUPqD7PN64IhcWCwBgyzCWCIrQGDeVYxAobUgeFiMEThNcGQOjBYA4Z4Ahjm1oDBzDVHwJA5MFwMhll6RTCE7u0Ne8CQ3BQYzFxzBAyJA8NZMMSxRRlD6N68sgcM6U2Bwcw1R8AQOzCcBUOUWASGuRHdO1pIAz3E0wXt9JlxHFzzCTBzPLeG59kEnmuxWAB0UzoA78CUzv+74I8f57ThJFjvEG65W7DctTDG13tgzXoPTPGMZHAzl8FdzIbrHgabKZxjw9XYMOWDifY82+nbnYaGuUPDxWh4w+NgWey+a3Hw9b7QEt39AQ==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-03-30T07:31:17.992Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="J-_uNohaOytkOsj1aLBg" version="14.5.3" type="github">
+  <diagram name="Page-1" id="42789a77-a242-8287-6e28-9cd8cfd52e62">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="K-4lSzRY0n7W32VA-thG-1" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-4" target="K-4lSzRY0n7W32VA-thG-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-2" value="" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-4" target="K-4lSzRY0n7W32VA-thG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-3" value="" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-4" target="K-4lSzRY0n7W32VA-thG-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-4" value="Questions about the data" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="450" y="80" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-5" value="&lt;span&gt;Influence of the cue&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="457.5" y="190" width="132.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-6" value="&lt;span&gt;Change of mind&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="700" y="190" width="75" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-7" target="K-4lSzRY0n7W32VA-thG-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-7" value="How to best model short presentations?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="190" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-8" value="How to best model short presentations?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="320" width="180" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
