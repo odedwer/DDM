@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-03-30T07:31:17.992Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="J-_uNohaOytkOsj1aLBg" version="14.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-30T07:46:25.404Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="De6eIGsK8ZBnJ75LfPJt" version="14.5.3" type="github">
   <diagram name="Page-1" id="42789a77-a242-8287-6e28-9cd8cfd52e62">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1802" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -26,14 +26,39 @@
         <mxCell id="K-4lSzRY0n7W32VA-thG-6" value="&lt;span&gt;Change of mind&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="700" y="190" width="75" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-7" target="K-4lSzRY0n7W32VA-thG-8">
+        <mxCell id="K-4lSzRY0n7W32VA-thG-7" value="How to best model short presentations?&lt;br&gt;(model only neutral cue)" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="190" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-8" target="K-4lSzRY0n7W32VA-thG-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-7" value="How to best model short presentations?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="210" y="190" width="180" height="50" as="geometry" />
+        <mxCell id="K-4lSzRY0n7W32VA-thG-8" value="does the drift rate follow stimulus presentation or not?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="340" y="310" width="180" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-8" value="How to best model short presentations?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="210" y="320" width="180" height="50" as="geometry" />
+        <mxCell id="K-4lSzRY0n7W32VA-thG-11" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="K-4lSzRY0n7W32VA-thG-12" source="K-4lSzRY0n7W32VA-thG-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245.61475409836817" y="299.9981967213382" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-12" value="starting point - zero or distribution?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="375" width="132.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-13" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-7" target="K-4lSzRY0n7W32VA-thG-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="270" as="sourcePoint" />
+            <mxPoint x="283.38221961409977" y="360.63529528419804" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-14" value="following the input duration may work by:&lt;br&gt;1) going down to zero slowly not instantaneous&lt;br&gt;2) gettng to an &quot;unstable integration&quot; regime that will continue the work for us" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;fontFamily=Verdana;strokeWidth=1;comic=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="510" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-17" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="K-4lSzRY0n7W32VA-thG-18" source="K-4lSzRY0n7W32VA-thG-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="167.5" y="245" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-18" value="post-processing&lt;br&gt;&lt;br&gt;non decision time - probably uniform, maybe Gaussian&lt;br&gt;&lt;br&gt;outlier proportion" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="310" width="222.5" height="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
