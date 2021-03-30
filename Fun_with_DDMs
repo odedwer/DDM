@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-03-30T07:59:10.468Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="zd-5_eFKBE-CWXJ971WR" version="14.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-30T08:12:06.536Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="eJ8TVWFgCWpZRF4Xk2Fv" version="14.5.3" type="github">
   <diagram name="Page-1" id="42789a77-a242-8287-6e28-9cd8cfd52e62">
-    <mxGraphModel dx="2762" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2522" dy="1612" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -20,11 +20,14 @@
         <mxCell id="K-4lSzRY0n7W32VA-thG-4" value="Questions about the data" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="450" y="80" width="90" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-5" target="K-4lSzRY0n7W32VA-thG-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-5" value="&lt;span&gt;Influence of the prime&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="457.5" y="190" width="132.5" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-6" value="&lt;span&gt;Change of mind&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="700" y="190" width="75" height="50" as="geometry" />
+        <mxCell id="K-4lSzRY0n7W32VA-thG-6" value="&lt;span&gt;Change of intentions&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="700" y="190" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-7" value="How to best model short presentations?&lt;br&gt;(model only neutral prime)" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="-230" y="140" width="180" height="70" as="geometry" />
@@ -43,7 +46,7 @@
         <mxCell id="K-4lSzRY0n7W32VA-thG-12" value="starting point - zero or distribution?&lt;br&gt;(Gaussian or uniform)" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="-307.5" y="515" width="162.5" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-13" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-7" target="K-4lSzRY0n7W32VA-thG-24">
+        <mxCell id="K-4lSzRY0n7W32VA-thG-13" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-7" target="K-4lSzRY0n7W32VA-thG-24">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="310" y="270" as="sourcePoint" />
             <mxPoint x="420" y="320" as="targetPoint" />
@@ -52,10 +55,13 @@
         <mxCell id="K-4lSzRY0n7W32VA-thG-14" value="following the input duration may work by:&lt;br&gt;1) going down to zero slowly not instantaneous&lt;br&gt;2) gettng to an &quot;unstable integration&quot; regime that will continue the work for us" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;fontFamily=Verdana;strokeWidth=1;comic=0;" vertex="1" parent="1">
           <mxGeometry x="-161.25" y="705" width="270" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-17" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="K-4lSzRY0n7W32VA-thG-18" source="K-4lSzRY0n7W32VA-thG-7">
+        <mxCell id="K-4lSzRY0n7W32VA-thG-17" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="K-4lSzRY0n7W32VA-thG-18" source="K-4lSzRY0n7W32VA-thG-7">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="167.5" y="245" as="sourcePoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-18" target="K-4lSzRY0n7W32VA-thG-42">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-18" value="post-processing&lt;br&gt;&lt;br&gt;non decision time - probably uniform, maybe Gaussian&lt;br&gt;&lt;br&gt;outlier proportion&lt;br&gt;&lt;br&gt;more?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="-512.5" y="605" width="222.5" height="130" as="geometry" />
@@ -76,7 +82,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-23" value="decreasing bounds - yes or no?&lt;br&gt;linear or exponential?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="-530" y="435" width="162.5" height="105" as="geometry" />
+          <mxGeometry x="-550" y="305" width="162.5" height="105" as="geometry" />
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-24" target="K-4lSzRY0n7W32VA-thG-26">
           <mxGeometry relative="1" as="geometry" />
@@ -84,7 +90,7 @@
         <mxCell id="K-4lSzRY0n7W32VA-thG-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-24" target="K-4lSzRY0n7W32VA-thG-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="K-4lSzRY0n7W32VA-thG-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-24" target="K-4lSzRY0n7W32VA-thG-25">
+        <mxCell id="K-4lSzRY0n7W32VA-thG-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-24" target="K-4lSzRY0n7W32VA-thG-25">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="20" y="565" />
@@ -95,7 +101,7 @@
           <mxGeometry x="-92.5" y="445" width="132.5" height="50" as="geometry" />
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-25" value="modelling the prime presentation time or just using that as prior bias?&lt;br&gt;&lt;br&gt;(and maybe even before cue presentation - might be essential for free choice to have some initial random drift rate)" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="120" y="535" width="310" height="170" as="geometry" />
+          <mxGeometry x="130" y="535" width="310" height="170" as="geometry" />
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-26" value="linear or nonlinear function?" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
           <mxGeometry x="137.5" y="420" width="200" height="100" as="geometry" />
@@ -113,7 +119,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-32" value="does it influence the starting point? the drift rate? bounds (make them asymetric?)" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
-          <mxGeometry x="490" y="345" width="200" height="100" as="geometry" />
+          <mxGeometry x="470" y="340" width="200" height="100" as="geometry" />
         </mxCell>
         <mxCell id="K-4lSzRY0n7W32VA-thG-33" value="mask - model it as additional noise? or just pause?" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;fontFamily=Verdana;strokeWidth=1;comic=0;" vertex="1" parent="1">
           <mxGeometry x="170" y="760" width="270" height="100" as="geometry" />
@@ -127,6 +133,36 @@
               <mxPoint x="345" y="730" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-36" target="K-4lSzRY0n7W32VA-thG-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-36" value="&lt;span&gt;old vs young participants&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="337.5" y="-50" width="132.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-37" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="K-4lSzRY0n7W32VA-thG-4" target="K-4lSzRY0n7W32VA-thG-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="57.29" as="sourcePoint" />
+            <mxPoint x="489.49281472211896" y="20.001055029500584" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-38" value="rationale - try out something where the specific parameters matter" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;fontFamily=Verdana;strokeWidth=1;comic=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="-170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-40" value="&lt;span&gt;is the group difference in something central or peripheral? (e.g. slower drift rate or slower non-decision time?)&lt;br&gt;see old work by Ratcliff&lt;br&gt;&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="10" y="-210" width="352.5" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-41" style="edgeStyle=none;rounded=1;html=1;labelBackgroundColor=none;startArrow=none;startFill=0;startSize=5;endArrow=classicThin;endFill=1;endSize=5;jettySize=auto;orthogonalLoop=1;strokeColor=#B3B3B3;strokeWidth=1;fontFamily=Verdana;fontSize=12;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="K-4lSzRY0n7W32VA-thG-40" source="K-4lSzRY0n7W32VA-thG-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="365.76783309836947" y="-76.26965229867437" as="sourcePoint" />
+            <mxPoint x="381.99281472211896" y="-139.99894497049942" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-42" value="can be interesting to look at very low level visual RT tasks to see the distributions there, it can help us to know what the distribution of peripheral delays is" style="whiteSpace=wrap;html=1;rounded=0;shadow=1;fontFamily=Verdana;strokeWidth=1;comic=0;" vertex="1" parent="1">
+          <mxGeometry x="-536.25" y="790" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="K-4lSzRY0n7W32VA-thG-44" value="does it influence the starting point? the drift rate? bounds (make them asymetric?)" style="ellipse;whiteSpace=wrap;html=1;rounded=0;shadow=1;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="780" y="310" width="200" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
