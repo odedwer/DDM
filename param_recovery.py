@@ -3,22 +3,32 @@
 # Constants (not fittable) - boundaries, starting point (0)
 
 import typing
-from itertools import product
+from itertools import product, combinations
 
 import numpy as np
 import matplotlib.pyplot as plt
+import ddm
 from ddm import Model, Fittable, Solution
 from ddm.functions import fit_adjust_model
 from ddm.models import LossRobustBIC, DriftConstant, NoiseConstant, BoundConstant, OverlayNonDecision
 from tqdm import tqdm
+import pandas as pd
 from ddm import set_N_cpus
 
 # set_N_cpus(4)
+I = 10
 
 DEFAULT_N_SAMPLES = 1000
 
 
-def sample_model(model, n_samples=DEFAULT_N_SAMPLES):
+def sample_model(model, n_samples=DEFAULT_N_SAMPLES) -> ddm.Sample:
+    """
+    get samples from a model - samples are trials
+    :param model: The model to generate trials by
+    :param n_samples: optional, defaults to DEFAULT_N_SAMPLES.
+                      The number of trials to generate
+    :return: ddm.Sample
+    """
     sol: Solution = model.solve()
     samples = sol.resample(n_samples)
     return samples
@@ -38,23 +48,61 @@ def param_recovery(fittable_model: Model, param_defaults_dict: dict, param_facto
     sorted_ranges = np.array(list(param_ranges.values()))[np.argsort(list(param_ranges.keys()))]
     param_combs = np.array(list(product(*sorted_ranges)))
     model_params = param_defaults_dict.copy()
-    ctor_param_names = list(param_ranges.keys())
+    fit_param_names = list(param_ranges.keys())
     model_param_names = list(param_factory_dict.keys())
     fit_results = np.full_like(param_combs, fill_value=np.nan)
     for i, param_comb in enumerate(tqdm(param_combs)):
-        for j, param_name in enumerate(ctor_param_names):
-            exec('model_params[model_param_names[j]] = param_factory_dict[model_param_names[j]](%s = %f)' %(param_name, param_comb[j]))
+        for j, param_name in enumerate(fit_param_names):
+            exec('model_params[model_param_names[j]] = param_factory_dict[model_param_names[j]](%s = %f)' % (
+                param_name, param_comb[j]))
         _, fit_results[i, :] = single_run_param_recovery(fittable_model, model_params)
-
     # plotting simulated vs recovered parameters
+    plot_real_vs_recovered_params(fit_param_names, fit_results, param_combs, param_ranges)
+
+    # plotting recovery success of parameter interactions
+    fig = plt.figure()
+    idx = np.array(list(product(range(len(fit_param_names)))))
+    df = pd.DataFrame(data=np.hstack([param_combs, fit_results]),
+                      columns=fit_param_names.extend(["fitted_" + s for s in fit_param_names]))
+    loss = lambda real, fitted: (real - fitted) ** 2
+    # z score data
+    means = df.iloc[:, 0:len(fit_param_names)].mean()
+    stds = df.iloc[:, 0:len(fit_param_names)].std()
+    df.iloc[:, 0:len(fit_param_names)] = (df.iloc[:, 0:len(fit_param_names)] - means) / stds
+    df.iloc[:, len(fit_param_names):2 * len(fit_param_names)] = (df.iloc[:,
+                                                                 0:len(fit_param_names)] - means) / stds
+    loss_df = loss(df.iloc[:, 0:len(fit_param_names)], df.iloc[:, 0:len(fit_param_names)])
+    df = pd.concat([df, loss_df], axis=1)
+
+    idx_combs = list(combinations(range(len(fit_param_names)), 2))
+    for idx in idx_combs:
+        idx = np.array(idx)
+        grouped_df: pd.DataFrame = df.groupby(by=idx).mean()
+        mse = grouped_df.iloc[:, (2 * len(fit_param_names)) + idx].to_numpy()
+        mse = np.sqrt(mse).mean(1)
+        # TODO: unfold this to a 2D matrix for imshow
+
+    return fit_results, param_combs, fit_param_names
+
+
+def plot_real_vs_recovered_params(ctor_param_names, fit_results, param_combs, param_ranges) -> typing.Tuple[
+    plt.Figure, plt.Axes]:
+    """
+    Plots the recovered parameters vs the real parameters used for simulation.
+    :param ctor_param_names: Names of the recovered parameters
+    :param fit_results: the recovered parameters
+    :param param_combs: the real parameters used for simulation
+    :param param_ranges: the range of parameters used for simulation
+    :return: figure & axes
+    """
     fig = plt.figure()
     for i, param_name in enumerate(ctor_param_names):
-        ax = fig.add_subplot(1, len(ctor_param_names), i+1)
+        ax = fig.add_subplot(1, len(ctor_param_names), i + 1)
         ax.scatter(param_combs[:, i], fit_results[:, i])
         ax.set_title(param_name)
         plot_lim = np.linspace(param_ranges[param_name].min(), param_ranges[param_name].max(), 2)
         ax.plot(plot_lim, plot_lim, '--')
-    return fit_results, param_combs, ctor_param_names
+    return fig, ax
 
 
 def single_run_param_recovery(fittable_model: Model, model_params, n_samples=DEFAULT_N_SAMPLES) -> typing.Tuple[
