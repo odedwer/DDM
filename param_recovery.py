@@ -35,6 +35,12 @@ def sample_model(model, n_samples=DEFAULT_N_SAMPLES) -> ddm.Sample:
 
 
 def fit_model(model, **kwargs):
+    """
+
+    :param model:
+    :param kwargs:
+    :return:
+    """
     if "samples" not in kwargs.keys():
         kwargs["samples"] = sample_model(model) if "n_samples" not in kwargs.keys() else sample_model(model, kwargs[
             "n_samples"])
@@ -43,46 +49,60 @@ def fit_model(model, **kwargs):
                      lossfunction=LossRobustBIC, verbose=False)
 
 
-def param_recovery(fittable_model: Model, param_defaults_dict: dict, param_factory_dict: dict, param_ranges: dict) -> \
-        typing.Tuple[np.array, np.array, list]:
+def param_recovery(fittable_model: Model, param_defaults_dict: dict, param_factory_dict: dict, param_ranges: dict,
+                   n_iter=10) -> \
+        typing.Tuple[np.array, np.array, list, plt.Figure, np.array]:
     sorted_ranges = np.array(list(param_ranges.values()))[np.argsort(list(param_ranges.keys()))]
     param_combs = np.array(list(product(*sorted_ranges)))
     model_params = param_defaults_dict.copy()
     fit_param_names = list(param_ranges.keys())
     model_param_names = list(param_factory_dict.keys())
-    fit_results = np.full_like(param_combs, fill_value=np.nan)
+    fit_results = np.full(param_combs.shape + (n_iter,), fill_value=np.nan)
     for i, param_comb in enumerate(tqdm(param_combs)):
         for j, param_name in enumerate(fit_param_names):
             exec('model_params[model_param_names[j]] = param_factory_dict[model_param_names[j]](%s = %f)' % (
                 param_name, param_comb[j]))
-        _, fit_results[i, :] = single_run_param_recovery(fittable_model, model_params)
+        for iter in range(n_iter):
+            _, fit_results[i, :, iter] = single_run_param_recovery(fittable_model, model_params)
+    # unfold to 2D
+    param_combs = np.repeat(param_combs, n_iter).reshape(param_combs.shape + (n_iter,))
+    fit_results = np.hstack(fit_results)
+    param_combs = np.hstack(param_combs)
     # plotting simulated vs recovered parameters
     plot_real_vs_recovered_params(fit_param_names, fit_results, param_combs, param_ranges)
-
     # plotting recovery success of parameter interactions
-    fig = plt.figure()
-    idx = np.array(list(product(range(len(fit_param_names)))))
-    df = pd.DataFrame(data=np.hstack([param_combs, fit_results]),
-                      columns=fit_param_names.extend(["fitted_" + s for s in fit_param_names]))
     loss = lambda real, fitted: (real - fitted) ** 2
     # z score data
-    means = df.iloc[:, 0:len(fit_param_names)].mean()
-    stds = df.iloc[:, 0:len(fit_param_names)].std()
-    df.iloc[:, 0:len(fit_param_names)] = (df.iloc[:, 0:len(fit_param_names)] - means) / stds
-    df.iloc[:, len(fit_param_names):2 * len(fit_param_names)] = (df.iloc[:,
-                                                                 0:len(fit_param_names)] - means) / stds
-    loss_df = loss(df.iloc[:, 0:len(fit_param_names)], df.iloc[:, 0:len(fit_param_names)])
-    df = pd.concat([df, loss_df], axis=1)
+    means = param_combs.mean(0)
+    stds = param_combs.std(0)
+    z_scored_param_combs = (param_combs - means) / stds
+    z_scored_fit_results = (fit_results - means) / stds
+    loss_mat = loss(z_scored_param_combs, z_scored_fit_results)
+
+    df = pd.DataFrame(data=np.hstack([z_scored_param_combs, z_scored_fit_results, loss_mat]),
+                      columns=fit_param_names + ["fitted_" + s for s in fit_param_names] + ["loss_" + s for s in
+                                                                                            fit_param_names])
 
     idx_combs = list(combinations(range(len(fit_param_names)), 2))
-    for idx in idx_combs:
+    fig = plt.figure()
+    nrows = np.floor(np.sqrt(len(idx_combs))).astype(int)
+    ncols = np.ceil(len(idx_combs) / nrows).astype(int)
+    axes = np.array(fig.subplots(nrows, ncols))
+    axes = axes.flatten()
+    for i, idx in enumerate(idx_combs):
         idx = np.array(idx)
-        grouped_df: pd.DataFrame = df.groupby(by=idx).mean()
-        mse = grouped_df.iloc[:, (2 * len(fit_param_names)) + idx].to_numpy()
+        grouped_df: pd.DataFrame = df.groupby(by=[fit_param_names[idx[0]], fit_param_names[idx[1]]]).mean()
+        mse = grouped_df.iloc[:, (2 * len(fit_param_names)) + idx - 2].to_numpy()  # -2 because we grouped
         mse = np.sqrt(mse).mean(1)
-        # TODO: unfold this to a 2D matrix for imshow
-
-    return fit_results, param_combs, fit_param_names
+        mse = mse.reshape((param_ranges[fit_param_names[idx[0]]].size, param_ranges[fit_param_names[idx[1]]].size))
+        # plot
+        ax: plt.Axes = axes[i]
+        ax.set_title(f"{fit_param_names[idx[0]]} VS {fit_param_names[idx[1]]}")
+        ax.set_xlabel(fit_param_names[idx[0]])
+        ax.set_ylabel(fit_param_names[idx[1]])
+        im = ax.imshow(mse, cmap=plt.cm.jet)
+        plt.colorbar(im, ax=ax)
+    return fit_results, param_combs, fit_param_names, fig, axes
 
 
 def plot_real_vs_recovered_params(ctor_param_names, fit_results, param_combs, param_ranges) -> typing.Tuple[
@@ -155,10 +175,11 @@ const_model_factory_dict = {"drift": DriftConstant, "noise": NoiseConstant, "ove
 
 # params = single_run_param_recovery(const_model_fittable, model_params=const_model_params)
 
-param_ranges = {"drift": np.linspace(DRIFT_CONST_FIT["minval"], DRIFT_CONST_FIT["maxval"], 8),
-                "noise": np.linspace(NOISE_CONST_FIT["minval"], NOISE_CONST_FIT["maxval"], 8),
-                "nondectime": np.linspace(OVERLAY_CONST_FIT["minval"], OVERLAY_CONST_FIT["maxval"], 4)}
+param_ranges = {"drift": np.linspace(DRIFT_CONST_FIT["minval"], DRIFT_CONST_FIT["maxval"], 5),
+                "noise": np.linspace(NOISE_CONST_FIT["minval"], NOISE_CONST_FIT["maxval"], 5),
+                "nondectime": np.linspace(OVERLAY_CONST_FIT["minval"], OVERLAY_CONST_FIT["maxval"], 5)}
 
 # %%
-fit_results, param_combs, param_names = param_recovery(const_model_fittable, const_model_sim_defaults,
-                                                       const_model_factory_dict, param_ranges)
+fit_results, param_combs, fit_param_names, fig, axes = param_recovery(
+    const_model_fittable, const_model_sim_defaults,
+    const_model_factory_dict, param_ranges)
