@@ -7,12 +7,15 @@ from itertools import product, combinations
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 import ddm
 from ddm import Model, Fittable, Solution
 from ddm.functions import fit_adjust_model
 from ddm.models import LossRobustBIC, DriftConstant, NoiseConstant, BoundConstant, OverlayNonDecision
 from tqdm import tqdm
 import pandas as pd
+import plotting_functions as pl
+from importlib import reload
 from ddm import set_N_cpus
 
 # set_N_cpus(4)
@@ -51,7 +54,7 @@ def fit_model(model, **kwargs):
 
 def param_recovery(fittable_model: Model, param_defaults_dict: dict, param_factory_dict: dict, param_ranges: dict,
                    n_iter=10) -> \
-        typing.Tuple[np.array, np.array, list, plt.Figure, np.array]:
+        typing.Tuple[np.array, np.array, list, plt.Figure, plt.Figure, plt.Figure, plt.Figure]:
     sorted_ranges = np.array(list(param_ranges.values()))[np.argsort(list(param_ranges.keys()))]
     param_combs = np.array(list(product(*sorted_ranges)))
     model_params = param_defaults_dict.copy()
@@ -66,24 +69,37 @@ def param_recovery(fittable_model: Model, param_defaults_dict: dict, param_facto
             _, fit_results[i, :, iter] = single_run_param_recovery(fittable_model, model_params)
     # unfold to 2D
     param_combs = np.repeat(param_combs, n_iter).reshape(param_combs.shape + (n_iter,))
-    fit_results = np.hstack(fit_results)
-    param_combs = np.hstack(param_combs)
+    fit_results = np.hstack(fit_results).T
+    param_combs = np.hstack(param_combs).T
     # plotting simulated vs recovered parameters
-    plot_real_vs_recovered_params(fit_param_names, fit_results, param_combs, param_ranges)
+    fig_1d_dots = plot_real_vs_recovered(fit_param_names, fit_results, param_combs, param_ranges)
+    fig_1d_errbars = plot_real_vs_recovered_error_bars(fit_param_names, fit_results, param_combs, param_ranges)
+    fig_interactions = plot_real_vs_recovered_interactions(fit_param_names, fit_results, param_combs, param_ranges)
     # plotting recovery success of parameter interactions
-    loss = lambda real, fitted: (real - fitted) ** 2
-    # z score data
-    means = param_combs.mean(0)
-    stds = param_combs.std(0)
-    z_scored_param_combs = (param_combs - means) / stds
-    z_scored_fit_results = (fit_results - means) / stds
-    loss_mat = loss(z_scored_param_combs, z_scored_fit_results)
+    fig_2d = plot_2d_recovery_loss(fit_param_names, fit_results, param_combs, param_ranges)
+    return fit_results, param_combs, fit_param_names, fig_1d_dots, fig_1d_errbars, fig_2d, fig_interactions
 
+
+def plot_2d_recovery_loss(fit_param_names, fit_results, param_combs, param_ranges,
+                          loss=lambda real, fitted: (real - fitted) ** 2, zscore=True):
+    if zscore:
+        means = param_combs.mean(0)
+        stds = param_combs.std(0)
+        z_scored_param_combs = (param_combs - means) / stds
+        z_scored_fit_results = (fit_results - means) / stds
+    else:
+        z_scored_param_combs = param_combs
+        z_scored_fit_results = fit_results
+
+    loss_mat = loss(z_scored_param_combs, z_scored_fit_results)
+    idx_combs = list(combinations(range(len(fit_param_names)), 2))
+
+    # for each plot we want to average all groups by pairs of parameters, easy with pandas group_by function
     df = pd.DataFrame(data=np.hstack([z_scored_param_combs, z_scored_fit_results, loss_mat]),
                       columns=fit_param_names + ["fitted_" + s for s in fit_param_names] + ["loss_" + s for s in
                                                                                             fit_param_names])
 
-    idx_combs = list(combinations(range(len(fit_param_names)), 2))
+    # initiating figure
     fig = plt.figure()
     nrows = np.floor(np.sqrt(len(idx_combs))).astype(int)
     ncols = np.ceil(len(idx_combs) / nrows).astype(int)
@@ -102,13 +118,14 @@ def param_recovery(fittable_model: Model, param_defaults_dict: dict, param_facto
         ax.set_ylabel(fit_param_names[idx[1]])
         im = ax.imshow(mse, cmap=plt.cm.jet)
         plt.colorbar(im, ax=ax)
-    return fit_results, param_combs, fit_param_names, fig, axes
+    fig.tight_layout()
+    return fig
 
 
-def plot_real_vs_recovered_params(ctor_param_names, fit_results, param_combs, param_ranges) -> typing.Tuple[
+def plot_real_vs_recovered(ctor_param_names, fit_results, param_combs, param_ranges) -> typing.Tuple[
     plt.Figure, plt.Axes]:
     """
-    Plots the recovered parameters vs the real parameters used for simulation.
+    Plots the recovered parameters vs the real parameters used for simulation - each simulation single dot.
     :param ctor_param_names: Names of the recovered parameters
     :param fit_results: the recovered parameters
     :param param_combs: the real parameters used for simulation
@@ -121,8 +138,83 @@ def plot_real_vs_recovered_params(ctor_param_names, fit_results, param_combs, pa
         ax.scatter(param_combs[:, i], fit_results[:, i])
         ax.set_title(param_name)
         plot_lim = np.linspace(param_ranges[param_name].min(), param_ranges[param_name].max(), 2)
-        ax.plot(plot_lim, plot_lim, '--')
-    return fig, ax
+        ax.plot(plot_lim, plot_lim, '--', color='gray')
+    fig.tight_layout()
+    return fig
+
+
+def plot_real_vs_recovered_error_bars(ctor_param_names, fit_results, param_combs, param_ranges) -> typing.Tuple[
+    plt.Figure, plt.Axes]:
+    """
+    Plots the recovered parameters vs the real parameters used for simulation - mean and error bars
+    (currently - standard error).
+    :param ctor_param_names: Names of the recovered parameters
+    :param fit_results: the recovered parameters
+    :param param_combs: the real parameters used for simulation
+    :param param_ranges: the range of parameters used for simulation
+    :return: figure & axes
+    """
+    df = pd.DataFrame(data=np.hstack([param_combs, fit_results]),
+                      columns=ctor_param_names + ["fitted_" + s for s in ctor_param_names])
+    fig = plt.figure()
+    for i, param_name in enumerate(ctor_param_names):
+        ax: plt.Axes = fig.add_subplot(1, len(ctor_param_names), i + 1)
+        grouped_df: pd.DataFrameGroupBy = df.groupby(by=param_name)
+        fit_results_mean = grouped_df.mean()["fitted_" + param_name]
+        fit_results_err = grouped_df.std()["fitted_" + param_name]
+        ax.errorbar(np.unique(param_ranges[param_name]), fit_results_mean, yerr=fit_results_err)
+        ax.set_title(param_name)
+        plot_lim = np.linspace(param_ranges[param_name].min(), param_ranges[param_name].max(), 2)
+        ax.plot(plot_lim, plot_lim, '--', color='gray')
+    fig.tight_layout()
+    return fig
+
+
+def plot_real_vs_recovered_interactions(ctor_param_names, fit_results, param_combs, param_ranges) -> typing.Tuple[
+    plt.Figure, plt.Axes]:
+    """
+    Plots the recovered parameters vs the real parameters used for simulation
+    for each param we plot mean and error bars according to the level of each of the other params
+    (currently - errorbars = standard error).
+    :param ctor_param_names: Names of the recovered parameters
+    :param fit_results: the recovered parameters
+    :param param_combs: the real parameters used for simulation
+    :param param_ranges: the range of parameters used for simulation
+    :return: figure & axes
+    """
+    n_params = len(ctor_param_names)
+    df = pd.DataFrame(data=np.hstack([param_combs, fit_results]),
+                      columns=ctor_param_names + ["fitted_" + s for s in ctor_param_names])
+    fig = plt.figure()
+    for i, param_name_main in enumerate(ctor_param_names):
+        for j, param_name_secondary in enumerate(ctor_param_names):
+            ax: plt.Axes = fig.add_subplot(n_params, n_params, i * n_params + j + 1)
+            # TODO: remove the axes for the cases of i==j, but leave the title & ylabel
+            if i == 0:
+                ax.set_title(param_name_secondary)
+            if j == 0:
+                ax.set_ylabel(param_name_main, fontsize=rcParams['axes.titlesize'])
+
+            if i == j:
+                continue
+            ax: plt.Axes = fig.add_subplot(n_params, n_params, i * n_params + j + 1)
+            grouped_df: pd.DataFrameGroupBy = df.groupby(by=[param_name_main, param_name_secondary])
+            fit_results_mean = grouped_df.mean()["fitted_" + param_name_main].to_numpy()
+            fit_results_err = grouped_df.std()["fitted_" + param_name_main].to_numpy()
+
+            fit_results_mean = fit_results_mean.reshape((param_ranges[param_name_main].size,
+                                                         param_ranges[param_name_secondary].size))
+            fit_results_err = fit_results_err.reshape((param_ranges[param_name_main].size,
+                                                       param_ranges[param_name_secondary].size))
+            for idx, val in enumerate(param_ranges[param_name_secondary]):
+                ax.errorbar(np.unique(param_ranges[param_name_main]), fit_results_mean[:, idx],
+                            yerr=fit_results_err[:, idx], label=val)
+
+            ax.legend()
+            plot_lim = np.linspace(param_ranges[param_name_main].min(), param_ranges[param_name_main].max(), 2)
+            ax.plot(plot_lim, plot_lim, '--', color='gray')
+    fig.tight_layout()
+    return fig
 
 
 def single_run_param_recovery(fittable_model: Model, model_params, n_samples=DEFAULT_N_SAMPLES) -> typing.Tuple[
@@ -175,11 +267,13 @@ const_model_factory_dict = {"drift": DriftConstant, "noise": NoiseConstant, "ove
 
 # params = single_run_param_recovery(const_model_fittable, model_params=const_model_params)
 
-param_ranges = {"drift": np.linspace(DRIFT_CONST_FIT["minval"], DRIFT_CONST_FIT["maxval"], 5),
-                "noise": np.linspace(NOISE_CONST_FIT["minval"], NOISE_CONST_FIT["maxval"], 5),
-                "nondectime": np.linspace(OVERLAY_CONST_FIT["minval"], OVERLAY_CONST_FIT["maxval"], 5)}
+param_ranges = {"drift": np.linspace(DRIFT_CONST_FIT["minval"], DRIFT_CONST_FIT["maxval"], 2),
+                "noise": np.linspace(NOISE_CONST_FIT["minval"], NOISE_CONST_FIT["maxval"], 2),
+                "nondectime": np.linspace(OVERLAY_CONST_FIT["minval"], OVERLAY_CONST_FIT["maxval"], 2)}
 
 # %%
-fit_results, param_combs, fit_param_names, fig, axes = param_recovery(
+fit_results, param_combs, fit_param_names, fig_1d_dots, fig_1d_errbars, fig_2d, fig_interactions = param_recovery(
     const_model_fittable, const_model_sim_defaults,
-    const_model_factory_dict, param_ranges)
+    const_model_factory_dict, param_ranges, n_iter=2)
+
+plt.show()
